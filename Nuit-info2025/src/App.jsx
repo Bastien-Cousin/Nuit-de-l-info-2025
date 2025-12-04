@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Index } from "./composants/index/Index.jsx";
+import { PageAccueil } from "./composants/page_accueil/page_accueil.jsx";
 
 function App() {
 
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Index />}/>
+        <Route path='/' element={<PageAccueil />}/>
       </Routes>
     </Router>
   )
