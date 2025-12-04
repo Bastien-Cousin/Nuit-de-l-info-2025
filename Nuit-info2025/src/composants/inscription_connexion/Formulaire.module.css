@@ -1,0 +1,103 @@
+.container {
+    width: 100%;
+    max-width: 420px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #333;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input {
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.submit_btn {
+    margin-top: 10px;
+    padding: 12px;
+    background: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.submit_btn:hover {
+    background: #005fcc;
+}
+
+.choice_wrapper {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.choice_card {
+    padding: 14px 18px;
+    border: 1px solid #0077ff;
+    border-radius: 6px;
+    color: #0077ff;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.choice_card:hover {
+    background: #0077ff;
+    color: white;
+}
+
+.back_btn {
+    background: none;
+    border: none;
+    color: #0077ff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: 0.2s ease;
+}
+
+.back_btn:hover {
+    color: #0056c7;
+}
+
+.create_account {
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.link {
+    margin-left: 5px;
+    color: #0077ff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.link:hover {
+    color: #0056c7;
+    text-decoration: underline;
+}
