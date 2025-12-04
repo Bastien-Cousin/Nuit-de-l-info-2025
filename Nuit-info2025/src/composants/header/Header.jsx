@@ -23,7 +23,7 @@ export const Header = () => {
             <div className={styles.nav_links}>
                 <Link to="/qui-sommes-nous">Qui sommes nous ?</Link>
                 <span>Exemple2</span>
-                <span>Exemple3</span>
+                <Link to="/forum">Forum</Link>
             </div>
 
             <div className={styles.login_container}>

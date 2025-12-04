@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth");
+const forumRoutes = require("./routes/forum"); // <== ajouter forum
 
 dotenv.config();
 
@@ -12,7 +13,9 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/forum", forumRoutes); // <== activation des routes du forum
 
+// Connexion à MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connecté"))
     .catch((err) => console.error(err));
