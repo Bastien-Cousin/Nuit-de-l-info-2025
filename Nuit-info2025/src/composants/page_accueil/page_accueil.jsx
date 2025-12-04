@@ -12,8 +12,9 @@ export const PageAccueil = () => {
         <div className={styles['presentation-container']}>
           <img src={ nird_logo } alt="Logo NIRD"/>
           <div className={styles['presentation-text']}>
-            <h1>QUI SOMMES NOUS ?</h1>
-            <p>Blablablablabla</p>
+            <h1>SLOGAN STYLE BAKA UWU</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu hendrerit elit. Nullam vel magna est. Nulla fermentum, magna in tincidunt vulputate, nisi magna vehicula orci, non dapibus ex metus eget quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis non dui eleifend, auctor arcu id, bibendum nunc. Integer aliquet porttitor velit. Curabitur eros nisl, molestie sed ultrices sit amet, dignissim non libero. Fusce finibus nulla eget varius egestas.</p>
+            <button>Nous découvrir</button>
           </div>
         </div>
       </div>
