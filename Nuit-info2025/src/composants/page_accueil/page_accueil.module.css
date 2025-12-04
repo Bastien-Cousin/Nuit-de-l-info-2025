@@ -24,6 +24,7 @@
 }
 
 .presentation-text button > *{
+    display: block;
     text-decoration: none;
     color: white;
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header } from '../header/Header.jsx'
+import { Footer } from '../footer/Footer.jsx';
 import styles from './qui_sommes_nous.module.css'
 import nird_logo from "../../img/nird_logo.png";
 
@@ -18,6 +19,7 @@ export const QuiSommesNous = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
