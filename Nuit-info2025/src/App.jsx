@@ -6,6 +6,7 @@ import { ChoixInscription } from "./composants/inscription_connexion/ChoixInscri
 import { ParticulierInscription } from "./composants/inscription_connexion/ParticulierInscription";
 import { OrganisationInscription } from "./composants/inscription_connexion/OrganisationInscription";
 import { EntrepriseInscription } from "./composants/inscription_connexion/EntrepriseInscription";
+import { Profil } from "./composants/profil/Profil";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/inscription/particulier" element={<ParticulierInscription />} />
         <Route path="/inscription/organisation" element={<OrganisationInscription />} />
         <Route path="/inscription/entreprise" element={<EntrepriseInscription />} />
+        <Route path="/profil" element={<Profil />} />
       </Routes>
     </Router>
   )
