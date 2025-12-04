@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import nird_logo from "../../img/nird_logo.png";
 import styles from "./Header.module.css";
 import { MdPerson } from "react-icons/md";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -17,10 +18,10 @@ export const Header = () => {
 
     return (
         <div className={styles.header}>
-            <img className={styles.nird_logo} src={nird_logo} alt="Logo de NIRD" />
+            <Link to="/"><img className={styles.nird_logo} src={nird_logo} alt="Logo de NIRD" /></Link>
 
             <div className={styles.nav_links}>
-                <span>Exemple1</span>
+                <Link to="/qui-sommes-nous">Qui sommes nous ?</Link>
                 <span>Exemple2</span>
                 <Link to="/forum">Forum</Link>
             </div>

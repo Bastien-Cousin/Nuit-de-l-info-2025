@@ -1,11 +1,10 @@
 import React from 'react'
-import { Header } from '../header/Header.jsx';
+import { Header } from '../header/Header.jsx'
 import { Footer } from '../footer/Footer.jsx';
-import styles from './page_accueil.module.css';
+import styles from './qui_sommes_nous.module.css'
 import nird_logo from "../../img/nird_logo.png";
-import { Link } from "react-router-dom";
 
-export const PageAccueil = () => {
+export const QuiSommesNous = () => {
 
   return (
     <div>
@@ -16,7 +15,7 @@ export const PageAccueil = () => {
           <div className={styles['presentation-text']}>
             <h1>SLOGAN STYLE BAKA UWU</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu hendrerit elit. Nullam vel magna est. Nulla fermentum, magna in tincidunt vulputate, nisi magna vehicula orci, non dapibus ex metus eget quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis non dui eleifend, auctor arcu id, bibendum nunc. Integer aliquet porttitor velit. Curabitur eros nisl, molestie sed ultrices sit amet, dignissim non libero. Fusce finibus nulla eget varius egestas.</p>
-            <button><Link to="/qui-sommes-nous">Nous découvrir</Link></button>
+            <button>Nous découvrir</button>
           </div>
         </div>
       </div>

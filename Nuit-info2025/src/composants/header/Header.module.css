@@ -31,6 +31,8 @@
 
 .nav_links > * {
     cursor: pointer;
+    text-decoration: none;
+    color: black;
     transition: color 0.2s ease;
 }
 
