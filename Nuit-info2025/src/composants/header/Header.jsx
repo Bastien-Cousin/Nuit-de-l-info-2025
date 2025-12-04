@@ -1,6 +1,7 @@
 import React from "react";
 import nird_logo from "../../img/nird_logo.png";
 import styles from "./Header.module.css";
+import { MdPerson } from "react-icons/md";
 
 export const Header = () => {
     return (
@@ -11,8 +12,14 @@ export const Header = () => {
                 <span>Exemple2</span>
                 <span>Exemple3</span>
             </div>
-            <div className={styles.login_form}>
-                Login / Form
+            <div className={styles.login_container}>
+                <button className={styles.icon_btn}>
+                    <MdPerson />
+                </button>
+
+                <button className={styles.form_btn}>
+                    Formulaire
+                </button>
             </div>
         </div>
     )
