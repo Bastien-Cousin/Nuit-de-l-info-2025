@@ -4,11 +4,11 @@ import { io } from "socket.io-client";
 
 const socket = io("http://localhost:5000");
 
-export const MessageFormulaire = ({ threadId, onPosted }) => {
+export const MessageFormulaire = ({ threadId }) => {
     const [content, setContent] = useState("");
 
-    const handleSend = async () => {
-        if (!content.trim()) return;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
         const res = await axios.post(
             `http://localhost:5000/api/forum/threads/${threadId}/messages`,
@@ -16,28 +16,21 @@ export const MessageFormulaire = ({ threadId, onPosted }) => {
             { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         );
 
-        const newMessage = res.data;
+        // Prévenir les autres utilisateurs
+        socket.emit("new_message", { threadId, message: res.data });
 
-        // Envoi temps réel
-        socket.emit("sendMessage", {
-            threadId,
-            message: newMessage
-        });
-
-        onPosted(newMessage);
         setContent("");
     };
 
     return (
-        <div style={{ marginBottom: "10px" }}>
+        <form onSubmit={handleSubmit}>
             <input
-                type="text"
-                placeholder="Votre message..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                style={{ marginRight: "10px" }}
+                placeholder="Répondre..."
+                required
             />
-            <button onClick={handleSend}>Envoyer</button>
-        </div>
+            <button type="submit">Envoyer</button>
+        </form>
     );
 };
