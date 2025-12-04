@@ -1,6 +1,7 @@
 import React from 'react'
-import { Header } from '../header/Header.jsx'
-import styles from './page_accueil.module.css'
+import { Header } from '../header/Header.jsx';
+import { Footer } from '../footer/Footer.jsx';
+import styles from './page_accueil.module.css';
 import nird_logo from "../../img/nird_logo.png";
 
 export const PageAccueil = () => {
@@ -18,6 +19,7 @@ export const PageAccueil = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
