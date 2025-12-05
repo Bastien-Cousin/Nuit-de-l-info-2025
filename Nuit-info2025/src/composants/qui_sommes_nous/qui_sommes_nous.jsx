@@ -1,9 +1,10 @@
 import { Header } from '../header/Header.jsx';
 import { Footer } from '../footer/Footer.jsx';
 import styles from './qui_sommes_nous.module.css';
-import presentation from "../../img/presentation.svg";
+import serpent from "../../img/serpent.png";
 import qui_sommes_nous from "../../img/qui_sommes_nous.png";
 import qui_sommes_nous_2 from "../../img/qui_sommes_nous_2.png";
+import { Link } from 'react-router-dom';
 
 export const QuiSommesNous = () => {
   return (
@@ -62,7 +63,10 @@ export const QuiSommesNous = () => {
               nouvelles perspectives pour les élèves comme pour les équipes pédagogiques.
             </p>
           </article>
-          <img className={styles.img} src={qui_sommes_nous_2} alt="Illustration démarche NIRD" loading="lazy" />
+          <div className={styles.img_wrapper}>
+            <img className={styles.img} src={qui_sommes_nous_2} alt="Illustration démarche NIRD" loading="lazy" />
+            <Link to="/snake"><img className={styles.loading} src={serpent} alt="Serpent" /></Link>
+          </div>
         </section>
       </main>
 

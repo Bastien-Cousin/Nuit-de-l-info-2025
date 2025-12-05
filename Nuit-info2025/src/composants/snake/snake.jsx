@@ -3,8 +3,9 @@ import styles from "./snake.module.css";
 import musiqueSnake from "./musique/tetris_off.mp3";
 import { MdMusicNote } from "react-icons/md";
 import { MdMusicOff } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-export default function SnakeJeu() {
+export const Snake = () => {
   const audioRef = useRef(null);
   const [musiqueEnLecture, setMusiqueEnLecture] = useState(false);
 
@@ -214,9 +215,11 @@ export default function SnakeJeu() {
           <MdMusicNote size={40} />
         )}
       </button>
-      <button className={styles.boutonRetour}>
-        Revenir au site...
-      </button>
+      <Link to='/'>
+        <button className={styles.boutonRetour}>
+          Revenir au site...
+        </button>
+      </Link>
       <div className={styles.titreGrille}>SNAKE !</div>
       {perdu && (
         <div className={styles.perdu}>

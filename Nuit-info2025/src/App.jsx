@@ -14,6 +14,7 @@ import { Catégorie } from "./composants/forum/Catégorie";
 import { Bulle } from "./composants/forum/Bulle";
 import { MentionsLegales } from './composants/mentions_legales/MentionsLegales.jsx';
 import { PolitiqueConfidentialite } from './composants/politique_confidentialite/PolitiqueConfidentialite.jsx';
+import { Snake } from './composants/snake/snake.jsx';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/thread/:threadId" element={<Bulle />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+        <Route path="/snake" element={<Snake />} />
       </Routes>
     </Router>
   )
