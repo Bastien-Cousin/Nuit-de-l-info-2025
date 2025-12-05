@@ -16,7 +16,7 @@ app.use(express.json());
 const server = require("http").createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
-    cors: { origin: "*" } // autorise toutes les origines
+    cors: { origin: "https://nuit-info-2025.netlify.app" } // autorise toutes les origines
 });
 
 // Stocker io globalement pour l'utiliser dans les routes
