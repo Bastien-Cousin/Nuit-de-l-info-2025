@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export const MessageFormulaire = ({ threadId, onPosted }) => {
     const [content, setContent] = useState("");
+
+    useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
