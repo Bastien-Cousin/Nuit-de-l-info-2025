@@ -37,7 +37,7 @@ export const Header = () => {
 
             <div className={styles.nav_links}>
                 <Link to="/qui-sommes-nous">Qui sommes nous ?</Link>
-                <Link to="/decouvrez_univers_page1">Découvrez notre univers</Link>
+                <Link to="/decouvrez_univers_general">Découvrez notre univers</Link>
                 <Link to="/forum">Forum</Link>
             </div>
 
