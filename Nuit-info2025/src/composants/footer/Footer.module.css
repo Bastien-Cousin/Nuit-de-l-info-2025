@@ -4,7 +4,7 @@
     font-size: 14px;
     color: #333;
     border-top: 1px solid #e5e5e5;
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }

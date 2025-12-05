@@ -2,9 +2,16 @@
     font-family: 'PolicePrincipaleSite';
     src: url('../src/assets/fonts/CreatoDisplay-Medium.otf') format('truetype');
 }
+
 * {
     font-family: 'PolicePrincipaleSite', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html, body, #root {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }

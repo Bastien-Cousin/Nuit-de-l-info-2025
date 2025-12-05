@@ -4,6 +4,7 @@ import styles from "./Header.module.css";
 import { MdPerson } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { FaWpforms } from "react-icons/fa";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -22,14 +23,14 @@ export const Header = () => {
 
             <div className={styles.nav_links}>
                 <Link to="/qui-sommes-nous">Qui sommes nous ?</Link>
-                <span>Exemple2</span>
+                <span>Découvrez notre univers</span>
                 <Link to="/forum">Forum</Link>
             </div>
 
             <div className={styles.login_container}>
                 <button className={styles.form_btn}>
                     <Link to="/questionnaire">
-                        Formulaire
+                        <FaWpforms />
                     </Link>
                 </button>
                 

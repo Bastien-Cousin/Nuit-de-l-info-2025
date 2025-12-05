@@ -6,16 +6,27 @@
     height: 70px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 40px;
     padding: 0 30px;
     background: #ffffff;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+.header > * {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
 .nird_logo {
     height: 48px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
 }
 
 .nird_logo:hover {
@@ -27,6 +38,7 @@
     gap: 30px;
     font-size: 16px;
     font-weight: 500;
+    align-items: center;
 }
 
 .nav_links > * {
@@ -34,16 +46,21 @@
     text-decoration: none;
     color: black;
     transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .nav_links > *:hover {
-    color: #0077ff;
+    color: #2f8bf4;
 }
 
 .login_container {
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-left: auto;
+    height: 100%;
 }
 
 .icon_btn {
@@ -55,49 +72,59 @@
     font-size: 20px;
     cursor: pointer;
     border-radius: 6px;
-    border: 1px solid #0077ff;
+    border: 1px solid #0362ce;
     background: white;
     color: #0077ff;
     transition: 0.2s ease;
 }
 
 .icon_btn:hover {
-    background: #0077ff;
+    background: #2f8bf4;
     color: white;
 }
 
 .form_btn {
-    font-size: 15px;
-    cursor: pointer;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: 1px solid #0077ff;
     background: white;
+    border: none;
     color: #0077ff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    margin-top: 0;
+    font-size: 40px;
     transition: 0.2s ease;
-}
-
-.form_btn > * {
-    text-decoration: none;
-    color: #0077ff;
 }
 
 .form_btn:hover {
     background: #0077ff;
+    color: white;
 }
 
-.form_btn:hover > *{
-    color: white;
+.form_btn a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user_container {
     position: relative;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .welcome {
-    color: #0077ff;
+    color: black;
     font-weight: 500;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown {
@@ -105,25 +132,26 @@
     top: 100%;
     right: 0;
     background: white;
-    border: 1px solid #0077ff;
+    border: 1px solid black;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
+    margin-top: 8px;
 }
 
 .dropdown button {
     padding: 8px 16px;
     border: none;
     background: white;
-    color: #0077ff;
+    color: black;
     text-align: left;
     cursor: pointer;
     transition: 0.2s ease;
 }
 
 .dropdown button:hover {
-    background: #0077ff;
-    color: white;
+    background: white;
+    color: #0077ff;
 }
