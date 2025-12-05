@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Header } from '../header/Header.jsx';
+import { Footer } from '../footer/Footer.jsx';
 
 export const Forum = () => {
     const [categories, setCategories] = useState([]);
@@ -48,6 +50,8 @@ export const Forum = () => {
     };
 
     return (
+        <>
+        <Header />
         <div style={{ padding: "20px" }}>
             <h1>Forum</h1>
 
@@ -93,5 +97,7 @@ export const Forum = () => {
                 </div>
             ))}
         </div>
+        <Footer />
+        </>
     );
 };
