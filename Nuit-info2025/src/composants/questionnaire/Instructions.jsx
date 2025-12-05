@@ -1,68 +1,67 @@
 import React from "react";
+import styles from "./Instructions.module.css";
 
 export const Instructions = ({ formData }) => {
+
+  // Objet contenant toutes les instructions
+  const instructionsMap = {
+    niveau: {
+      "Débutant": "Commencez par des mouvements simples et contrôlés. Privilégiez la qualité du mouvement à l’intensité.",
+      "Intermédiaire": "Ajoutez des variations plus difficiles pour progresser, tout en conservant une technique propre.",
+      "Avancé": "Travaillez la profondeur des mouvements et augmentez les charges progressivement pour maximiser vos performances."
+    },
+    objectifs: {
+      "Prise de masse": "Privilégiez les exercices poly-articulaires comme les squats et les pompes avec un tempo lent.",
+      "Perte de poids": "Pratiquez des séries plus longues avec peu de repos, ou des circuits (HIIT).",
+      "Souplesse / mobilité": "Ajoutez des étirements dynamiques avant les séances et des postures de yoga en fin de séance.",
+      "Endurance / cardio": "Enchaînez les mouvements avec peu de repos : pompes → squats → gainage.",
+      "Bien-être général": "Optez pour des séances douces mais régulières, incluant des exercices de respiration."
+    },
+    blessures: {
+      "Genoux/Articulations": "Limitez les flexions profondes et préférez les squats à amplitude réduite.",
+      "Dos/Colonne vertébrale": "Gardez toujours un dos droit et évitez les flexions lombaires. Le gainage est votre allié.",
+      "Épaules/Bras": "Gardez les coudes près du corps pendant les pompes pour limiter la pression sur les épaules.",
+      "Aucune": "Aucune restriction particulière à prendre en compte."
+    },
+    frequence: {
+      "1-2 fois": "Choisissez des séances full-body pour maximiser les résultats.",
+      "3-4 fois": "Alternez haut du corps / bas du corps pour favoriser une meilleure récupération.",
+      "5 fois ou plus": "Ajoutez une séance de mobilité pour éviter le surentraînement."
+    },
+    dureeSeance: {
+      "Courtes et intenses": "Utilisez du HIIT : 20 secondes d’effort / 10 secondes de repos.",
+      "Moyennes": "Structure idéale : 5 min échauffement – 25 min exercices – 10 min étirements.",
+      "Longues et progressives": "Prenez le temps d’exécuter chaque mouvement avec contrôle, avec 1 min de repos entre les séries."
+    }
+  };
+
+  // Générer les instructions à partir de formData
   const genererInstructionsProfil = () => {
     const instructions = [];
 
-    // Niveau sportif
-    if (formData.niveau === "Débutant") {
-      instructions.push("Commencez par des mouvements simples et contrôlés. Privilégiez la qualité du mouvement à l’intensité.");
-    }
-    if (formData.niveau === "Intermédiaire") {
-      instructions.push("Ajoutez des variations plus difficiles pour progresser, tout en conservant une technique propre.");
-    }
-    if (formData.niveau === "Avancé") {
-      instructions.push("Travaillez la profondeur des mouvements et augmentez les charges progressivement pour maximiser vos performances.");
+    // Niveau
+    if (formData.niveau && instructionsMap.niveau[formData.niveau]) {
+      instructions.push(instructionsMap.niveau[formData.niveau]);
     }
 
-    // Objectifs
-    if (formData.objectifs?.includes("Prise de masse")) {
-      instructions.push("Privilégiez les exercices poly-articulaires comme les squats et les pompes avec un tempo lent.");
-    }
-    if (formData.objectifs?.includes("Perte de poids")) {
-      instructions.push("Pratiquez des séries plus longues avec peu de repos, ou des circuits (HIIT).");
-    }
-    if (formData.objectifs?.includes("Souplesse / mobilité")) {
-      instructions.push("Ajoutez des étirements dynamiques avant les séances et des postures de yoga en fin de séance.");
-    }
-    if (formData.objectifs?.includes("Endurance / cardio")) {
-      instructions.push("Enchaînez les mouvements avec peu de repos : pompes → squats → gainage.");
-    }
-    if (formData.objectifs?.includes("Bien-être général")) {
-      instructions.push("Optez pour des séances douces mais régulières, incluant des exercices de respiration.");
-    }
+    // Objectifs (multi-checkbox)
+    formData.objectifs?.forEach(obj => {
+      if (instructionsMap.objectifs[obj]) instructions.push(instructionsMap.objectifs[obj]);
+    });
 
     // Blessures
-    if (formData.blessures === "Genoux/Articulations") {
-      instructions.push("Limitez les flexions profondes et préférez les squats à amplitude réduite.");
-    }
-    if (formData.blessures === "Dos/Colonne vertébrale") {
-      instructions.push("Gardez toujours un dos droit et évitez les flexions lombaires. Le gainage est votre allié.");
-    }
-    if (formData.blessures === "Épaules/Bras") {
-      instructions.push("Gardez les coudes près du corps pendant les pompes pour limiter la pression sur les épaules.");
+    if (formData.blessures && instructionsMap.blessures[formData.blessures]) {
+      instructions.push(instructionsMap.blessures[formData.blessures]);
     }
 
     // Fréquence
-    if (formData.frequence === "1-2 fois") {
-      instructions.push("Choisissez des séances full-body pour maximiser les résultats.");
-    }
-    if (formData.frequence === "3-4 fois") {
-      instructions.push("Alternez haut du corps / bas du corps pour favoriser une meilleure récupération.");
-    }
-    if (formData.frequence === "5 fois ou plus") {
-      instructions.push("Ajoutez une séance de mobilité pour éviter le surentraînement.");
+    if (formData.frequence && instructionsMap.frequence[formData.frequence]) {
+      instructions.push(instructionsMap.frequence[formData.frequence]);
     }
 
     // Durée des séances
-    if (formData.dureeSeance === "Courtes et intenses") {
-      instructions.push("Utilisez du HIIT : 20 secondes d’effort / 10 secondes de repos.");
-    }
-    if (formData.dureeSeance === "Moyennes") {
-      instructions.push("Structure idéale : 5 min échauffement – 25 min exercices – 10 min étirements.");
-    }
-    if (formData.dureeSeance === "Longues et progressives") {
-      instructions.push("Prenez le temps d’exécuter chaque mouvement avec contrôle, avec 1 min de repos entre les séries.");
+    if (formData.dureeSeance && instructionsMap.dureeSeance[formData.dureeSeance]) {
+      instructions.push(instructionsMap.dureeSeance[formData.dureeSeance]);
     }
 
     return instructions;
@@ -71,17 +70,19 @@ export const Instructions = ({ formData }) => {
   const instructions = genererInstructionsProfil();
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Vos Instructions Personnalisées</h2>
+    <div>
+      <h2 className={styles.instructionsTitle}>Vos Instructions Personnalisées</h2>
 
       {instructions.length === 0 ? (
         <p>Aucune donnée trouvée.</p>
       ) : (
-        <ul>
-          {instructions.map((t, i) => (
-            <li key={i}>{t}</li>
+        <div>
+          {instructions.map((text, i) => (
+            <div key={i} className={styles.instructionsCard}>
+              <p className={styles.instructionsText}>{text}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
