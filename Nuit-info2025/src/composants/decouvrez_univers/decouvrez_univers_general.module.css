@@ -1,0 +1,23 @@
+.container {
+  max-width: 1200px;
+  margin: 10px 120px 60px 120px;
+  padding: 0 20px;
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  color: #1f1f1f;
+  text-align: center;
+}
+
+.titreAccroche {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: #0077ff;
+}
+
+.paraAccroche {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-align: center;
+}

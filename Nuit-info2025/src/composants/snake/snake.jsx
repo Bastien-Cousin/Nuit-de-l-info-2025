@@ -233,7 +233,7 @@ export const Snake = () => {
       </audio>
       <div className={styles.zoneJeu}>
         <div className={styles.score}>
-          <span>Score :</span>
+          <span className={styles.scoretab}>Score :</span>
           <span className={styles.scoreValeur}>{score}</span>
         </div>
         <div className={styles.grille}>
