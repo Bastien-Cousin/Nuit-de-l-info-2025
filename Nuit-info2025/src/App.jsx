@@ -12,6 +12,8 @@ import { Profil } from "./composants/profil/Profil";
 import { Forum } from "./composants/forum/Forum";
 import { Catégorie } from "./composants/forum/Catégorie";
 import { Bulle } from "./composants/forum/Bulle";
+import { MentionsLegales } from './composants/mentions_legales/MentionsLegales.jsx';
+import { PolitiqueConfidentialite } from './composants/politique_confidentialite/PolitiqueConfidentialite.jsx';
 
 function App() {
 
@@ -30,6 +32,8 @@ function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/forum/:categoryId" element={<Catégorie />} />
         <Route path="/thread/:threadId" element={<Bulle />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
       </Routes>
     </Router>
   )
