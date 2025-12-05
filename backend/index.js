@@ -9,32 +9,35 @@ const forumRoutes = require("./routes/forum");
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "https://nuit-info-2025.netlify.app", // autorise uniquement ton frontend
+    credentials: true
+}));
 app.use(express.json());
 
-// Serveur HTTP + Socket.io
+// --- Serveur HTTP + Socket.io ---
 const server = require("http").createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
-    cors: { origin: "https://nuit-info-2025.netlify.app" } // autorise toutes les origines
+    cors: {
+        origin: "https://nuit-info-2025.netlify.app",
+        methods: ["GET", "POST"],
+        credentials: true
+    }
 });
 
 // Stocker io globalement pour l'utiliser dans les routes
 app.set("io", io);
 
 // --- ROUTES ---
-
-// Route principale pour tester le serveur
 app.get("/", (req, res) => {
     res.send("Backend opérationnel !");
 });
 
-// Route ping pour UptimeRobot
 app.get("/ping", (req, res) => {
     res.send("pong");
 });
 
-// Routes API
 app.use("/api/auth", authRoutes);
 app.use("/api/forum", forumRoutes);
 
