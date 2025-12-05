@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PageAccueil } from "./composants/page_accueil/page_accueil.jsx";
 import { QuiSommesNous } from "./composants/qui_sommes_nous/qui_sommes_nous.jsx";
 import { DecouvrezUniversGeneral } from "./composants/decouvrez_univers/decouvrez_univers_general.jsx";
+import { DecouvrezUniversJeu1 } from "./composants/decouvrez_univers/decouvrez_univers_jeu1.jsx";
+import { DecouvrezUniversJeu2 } from "./composants/decouvrez_univers/decouvrez_univers_jeu2.jsx";
+import { DecouvrezUniversJeu3 } from "./composants/decouvrez_univers/decouvrez_univers_jeu3.jsx";
 import { Questionnaire } from "./composants/questionnaire/questionnaire.jsx";
 import { Connexion } from "./composants/inscription_connexion/Connexion";
 import { ChoixInscription } from "./composants/inscription_connexion/ChoixInscription";
@@ -25,6 +28,9 @@ function App() {
         <Route path='/' element={<PageAccueil />}/>
         <Route path='/qui-sommes-nous' element={<QuiSommesNous />}/>
         <Route path='/decouvrez_univers_general' element={<DecouvrezUniversGeneral />}/>
+        <Route path='/decouvrez_univers_jeu1' element={<DecouvrezUniversJeu1 />}/>
+        <Route path='/decouvrez_univers_jeu2' element={<DecouvrezUniversJeu2 />}/>
+        <Route path='/decouvrez_univers_jeu3' element={<DecouvrezUniversJeu3 />}/>
         <Route path='/questionnaire' element={<Questionnaire />}/>
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<ChoixInscription />} />
