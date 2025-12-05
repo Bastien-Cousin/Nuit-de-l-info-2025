@@ -25,9 +25,7 @@ export const MentionsLegales = () => {
           <h2>Hébergement</h2>
           <p>
             Le site est hébergé par :<br />
-            Nom de l’hébergeur : OVH<br />
-            Adresse : 2 rue Kellermann, 59100 Roubaix, France<br />
-            Téléphone : +33 9 72 10 10 07
+            Nom de l’hébergeur : Netlify<br />
           </p>
         </section>
 
