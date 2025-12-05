@@ -1,0 +1,30 @@
+.landing-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.presentation-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+}
+
+.presentation-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.presentation-text p {
+    width: 500px;
+    text-align: justify;
+}
+
+.presentation-text button > *{
+    display: block;
+    text-decoration: none;
+    color: white;
+}
