@@ -18,11 +18,13 @@ import { BullePage } from './composants/forum/BullePage.jsx';
 import { MentionsLegales } from './composants/mentions_legales/MentionsLegales.jsx';
 import { PolitiqueConfidentialite } from './composants/politique_confidentialite/PolitiqueConfidentialite.jsx';
 import { Snake } from './composants/snake/snake.jsx';
+import { ScrollToTop } from './tools/ScrollToTop.js';
 
 function App() {
 
   return (
     <Router>
+      <ScrollToTop /> 
       <Routes>
         <Route path='/' element={<PageAccueil />}/>
         <Route path='/qui-sommes-nous' element={<QuiSommesNous />}/>
