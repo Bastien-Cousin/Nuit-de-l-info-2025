@@ -2,7 +2,7 @@
 ## Stack choisie : 
 - HTML, CSS, JS
 - React.js, Node.js
-- Netlify et Render pour l'hébergement
+- Netlify et Render pour l'hébergement front et back
 ## Informations sur le défi principal :
 Features développées : 
 - page d'accueil avec header, footer et quelques informations
