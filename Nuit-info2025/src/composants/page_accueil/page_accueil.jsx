@@ -31,7 +31,7 @@ export const PageAccueil = () => {
               la « démarche NIRD  ».
             </p>
             <button>
-              <Link to="/qui-sommes-nous">Nous découvrir</Link>
+              <Link to="/qui-sommes-nous">Nous découvrir...</Link>
             </button>
           </div>
         </div>
