@@ -2,6 +2,8 @@ import { Header } from "../header/Header.jsx";
 import styles from "./decouvrez_univers_general.module.css";
 import nird_logo from "../../img/nird_logo.png";
 import { DecouvrezUniversJeu1 } from "./decouvrez_univers_jeu1.jsx";
+import { DecouvrezUniversJeu2 } from "./decouvrez_univers_jeu2.jsx";
+import { Footer } from "../footer/Footer.jsx";
 
 export const DecouvrezUniversGeneral = () => {
   return (
@@ -27,7 +29,10 @@ export const DecouvrezUniversGeneral = () => {
           />
         </div>
         <DecouvrezUniversJeu1 />
+        <DecouvrezUniversJeu2 />
+        <DecouvrezUniversJeu3 />
       </div>
+      <Footer />
     </div>
   );
 };
