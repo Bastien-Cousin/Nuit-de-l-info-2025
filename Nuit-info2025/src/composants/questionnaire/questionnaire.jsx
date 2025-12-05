@@ -1,114 +1,99 @@
-import React, { useState } from 'react'
-import { Header } from '../header/Header.jsx';
-import { Footer } from '../footer/Footer.jsx';
-import styles from './questionnaire.module.css';
-import nird_logo from "../../img/nird_logo.png";
-
-const defaultQuestions = [
-  {
-    id: 1,
-    text: "Quelle est la couleur du ciel par temps clair ?",
-    options: ["Bleu", "Vert", "Rouge", "Jaune"],
-    correct: 0
-  },
-  {
-    id: 2,
-    text: "Combien y a-t-il de jours dans une semaine ?",
-    options: ["5", "6", "7", "8"],
-    correct: 2
-  },
-  {
-    id: 3,
-    text: "Quel est le résultat de 2 + 2 ?",
-    options: ["3", "4", "5", "22"],
-    correct: 1
-  }
-]
+import React, { useState } from "react";
+import "./questionnaire.module.css";
+import { Header } from "../header/Header";
+import { Footer } from "../footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 export const Questionnaire = () => {
-  const [questions] = useState(defaultQuestions)
-  const [answers, setAnswers] = useState({})
-  const [submitted, setSubmitted] = useState(false)
-  const [score, setScore] = useState(0)
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    niveau: "",
+    sports: [],
+    objectifs: [],
+    blessures: "",
+    frequence: "",
+    dureeSeance: ""
+  });
 
-  const handleChange = (questionId, optionIndex) => {
-    setAnswers(prev => ({ ...prev, [questionId]: optionIndex }))
-  }
+  const [showInstructions, setShowInstructions] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      let updatedArray = [...formData[name]];
+      if (checked) {
+        updatedArray.push(value);
+      } else {
+        updatedArray = updatedArray.filter((v) => v !== value);
+      }
+      setFormData({ ...formData, [name]: updatedArray });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    let s = 0
-    questions.forEach(q => {
-      if (answers[q.id] === q.correct) s += 1
-    })
-    setScore(s)
-    setSubmitted(true)
-  }
+    e.preventDefault();
 
-  const handleReset = () => {
-    setAnswers({})
-    setSubmitted(false)
-    setScore(0)
-  }
-
-  const allAnswered = questions.every(q => answers[q.id] !== undefined)
+    navigate("/instructions", {
+      state: { formData }
+    });
+  };
 
   return (
-    <div>
+    <>
       <Header />
 
-      <main className={styles.container}>
-        <img src={nird_logo} alt="Logo" className={styles.logo} />
+      <form onSubmit={handleSubmit}>
+        <h2>Profil Sportif</h2>
 
-        <h1 className={styles.title}>Questionnaire (QCM)</h1>
+        {/* Question 1 */}
+        <p>1. Quel est votre niveau sportif général ?</p>
+        <label><input type="radio" name="niveau" value="Débutant" onChange={handleChange} /> Débutant</label>
+        <label><input type="radio" name="niveau" value="Intermédiaire" onChange={handleChange} /> Intermédiaire</label>
+        <label><input type="radio" name="niveau" value="Avancé" onChange={handleChange} /> Avancé</label>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          {questions.map(q => (
-            <div key={q.id} className={styles.questionCard}>
-              <p className={styles.questionText}>{q.id}. {q.text}</p>
+        {/* Question 2 */}
+        <p>2. Quels sports pratiquez-vous régulièrement ?</p>
+        {["Course à pied", "Musculation", "Yoga/Pilates", "Natation", "Sports collectifs", "Autres"].map((sport) => (
+          <label key={sport}>
+            <input type="checkbox" name="sports" value={sport} onChange={handleChange} /> {sport}
+          </label>
+        ))}
 
-              <div className={styles.options}>
-                {q.options.map((opt, idx) => (
-                  <label key={idx} className={styles.optionLabel}>
-                    <input
-                      type="radio"
-                      name={`q-${q.id}`}
-                      value={idx}
-                      checked={answers[q.id] === idx}
-                      onChange={() => handleChange(q.id, idx)}
-                    />
-                    <span className={styles.optionText}>{opt}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* Question 3 */}
+        <p>3. Quels sont vos objectifs principaux ?</p>
+        {["Prise de masse", "Perte de poids", "Souplesse / mobilité", "Endurance / cardio", "Bien-être général"].map((objectif) => (
+          <label key={objectif}>
+            <input type="checkbox" name="objectifs" value={objectif} onChange={handleChange} /> {objectif}
+          </label>
+        ))}
 
-          <div className={styles.controls}>
-            <button type="submit" className={styles.submitBtn} disabled={!allAnswered}>Valider</button>
-            <button type="button" className={styles.resetBtn} onClick={handleReset}>Réinitialiser</button>
-          </div>
-        </form>
+        {/* Question 4 */}
+        <p>4. Avez-vous déjà eu des blessures ou douleurs récurrentes ?</p>
+        <label><input type="radio" name="blessures" value="Genoux/Articulations" onChange={handleChange} /> Genoux / articulations</label>
+        <label><input type="radio" name="blessures" value="Dos/Colonne vertébrale" onChange={handleChange} /> Dos / colonne vertébrale</label>
+        <label><input type="radio" name="blessures" value="Épaules/Bras" onChange={handleChange} /> Épaules / bras</label>
+        <label><input type="radio" name="blessures" value="Aucune" onChange={handleChange} /> Aucune</label>
 
-        {submitted && (
-          <div className={styles.result}>
-            <p>Votre score : <strong>{score} / {questions.length}</strong></p>
-            <ul>
-              {questions.map(q => (
-                <li key={q.id} className={styles.resultItem}>
-                  <span className={styles.resultQuestion}>{q.text} — </span>
-                  <span>
-                    Votre réponse: <strong>{q.options[answers[q.id]] ?? 'Aucune'}</strong>
-                    &nbsp;|&nbsp; Bonne réponse: <strong>{q.options[q.correct]}</strong>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </main>
+        {/* Question 5 */}
+        <p>5. Combien de fois par semaine souhaitez-vous vous entraîner ?</p>
+        <label><input type="radio" name="frequence" value="1-2 fois" onChange={handleChange} /> 1-2 fois</label>
+        <label><input type="radio" name="frequence" value="3-4 fois" onChange={handleChange} /> 3-4 fois</label>
+        <label><input type="radio" name="frequence" value="5 fois ou plus" onChange={handleChange} /> 5 fois ou plus</label>
+
+        {/* Question 6 */}
+        <p>6. Préférez-vous des séances :</p>
+        <label><input type="radio" name="dureeSeance" value="Courtes et intenses" onChange={handleChange} /> Courtes et intenses (15-30 min)</label>
+        <label><input type="radio" name="dureeSeance" value="Moyennes" onChange={handleChange} /> Moyennes (30-45 min)</label>
+        <label><input type="radio" name="dureeSeance" value="Longues et progressives" onChange={handleChange} /> Longues et progressives (45-60 min ou plus)</label>
+
+        <br /><br />
+        <button type="submit">Générer mes instructions</button>
+      </form>
 
       <Footer />
-    </div>
-  )
-}
+    </>
+  );
+};
