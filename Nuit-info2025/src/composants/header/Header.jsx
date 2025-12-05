@@ -18,7 +18,6 @@ export const Header = () => {
         navigate("/connexion");
     };
 
-    // Fermer le menu si on clique en dehors
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

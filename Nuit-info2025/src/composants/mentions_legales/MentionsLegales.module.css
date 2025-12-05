@@ -31,36 +31,3 @@
   margin-bottom: 15px;
   text-align: justify;
 }
-
-/* --- RESPONSIVE --- */
-@media (max-width: 900px) {
-  .main {
-    padding: 0 15px;
-  }
-
-  .main h1 {
-    font-size: 2.2rem;
-  }
-
-  .section h2 {
-    font-size: 1.4rem;
-  }
-
-  .section p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .main h1 {
-    font-size: 1.8rem;
-  }
-
-  .section h2 {
-    font-size: 1.2rem;
-  }
-
-  .section p {
-    font-size: 0.95rem;
-  }
-}

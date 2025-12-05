@@ -9,13 +9,14 @@ import { ChoixInscription } from "./composants/inscription_connexion/ChoixInscri
 import { ParticulierInscription } from "./composants/inscription_connexion/ParticulierInscription";
 import { OrganisationInscription } from "./composants/inscription_connexion/OrganisationInscription";
 import { EntrepriseInscription } from "./composants/inscription_connexion/EntrepriseInscription";
-import { Profil } from "./composants/profil/Profil";
+import { Profil } from "./composants/profil/Profil.jsx";
 import { ForumPage } from './composants/forum/ForumPage.jsx';
 import { BullePage } from './composants/forum/BullePage.jsx';
 import { MentionsLegales } from './composants/mentions_legales/MentionsLegales.jsx';
 import { PolitiqueConfidentialite } from './composants/politique_confidentialite/PolitiqueConfidentialite.jsx';
 import { Snake } from './composants/snake/snake.jsx';
 import { ScrollToTop } from './tools/ScrollToTop.js';
+import { InstructionsPage } from "./composants/questionnaire/InstructionsPage.jsx";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
         <Route path="/snake" element={<Snake />} />
+        <Route path="/instructions" element={<InstructionsPage />} />
       </Routes>
     </Router>
   )
