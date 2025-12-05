@@ -10,33 +10,48 @@ const qcmQuestions = [
   },
   {
     id: 2,
-    question: "En quelle année l'homme a-t-il marché sur la Lune ?",
-    options: ["1969", "1972", "1965", "1975"],
-    correct: 0
+    question: "Le reconditionnement d’un ordinateur consiste principalement à :",
+    options: ["Ajouter de nouveaux composants ultra-performants", 
+      "Remettre en état des PC usagés en effaçant les données, réparant le matériel et réinstallant un système", 
+      "Surveiller l’utilisation des ordinateurs par les élèves", 
+      "Transformer les ordinateurs en objets décoratifs"],
+    correct: 1
   },
   {
     id: 3,
-    question: "Quel est le plus haut sommet du monde ?",
-    options: ["Everest", "K2", "Kangchenjunga", "Denali"],
-    correct: 0
+    question: "Pourquoi Linux est-il souvent utilisé dans le reconditionnement ?",
+    options: ["Parce qu’il est payant et garantit un meilleur revenu pour l’établissement", 
+      "Parce qu’il est facile à pirater", 
+      "Parce que c’est un système d’exploitation libre et adapté aux usages éducatifs", 
+      "Parce qu’il ne fonctionne que sur les ordinateurs récents"],
+    correct: 2
   },
   {
     id: 4,
-    question: "Combien de continents y a-t-il ?",
-    options: ["5", "6", "7", "8"],
+    question: "Quel est un des bénéfices pédagogiques majeurs du reconditionnement par les élèves ?",
+    options: ["Apprendre à utiliser uniquement des logiciels propriétaires", 
+      "Réaliser des tâches répétitives sans apprendre de nouvelles compétences", 
+      "Développer des compétences techniques réelles en démontant, testant et réparant des PC", 
+      "Remplacer les techniciens informatiques de l’établissement"],
     correct: 2
   },
   {
     id: 5,
-    question: "Quel élément chimique a le symbole 'Au' ?",
-    options: ["Argent", "Aluminium", "Or", "Arsenic"],
+    question: "Quelle pratique est indispensable pour garantir la protection des données lors du reconditionnement ?",
+    options: ["Stocker les fichiers des anciens utilisateurs sur un disque externe", 
+      "Garder les comptes existants pour gagner du temps", 
+      "Effacer de manière sécurisée toutes les données des anciens utilisateurs", 
+      "Débrancher simplement le disque dur sans rien vérifier"],
     correct: 2
   },
   {
     id: 6,
-    question: "Qui est le meilleur joueur de CS2 ?",
-    options: ["ZywoO", "Donk", "KennyS", "M0nesy"],
-    correct: 0
+    question: "En quoi le reconditionnement contribue-t-il à une démarche de développement durable ?",
+    options: ["En augmentant la quantité de déchets électroniques", 
+      "En obligeant les établissements à acheter plus de matériel", 
+      "En prolongeant la durée de vie des machines et en réduisant les déchets numériques", 
+      "En remplaçant systématiquement les pièces encore fonctionnelles"],
+    correct: 2
   }
 ];
 
