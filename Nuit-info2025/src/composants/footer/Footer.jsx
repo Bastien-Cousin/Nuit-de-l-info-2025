@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 
 export const Footer = () => {
@@ -9,8 +10,9 @@ export const Footer = () => {
                     <p>&copy; {new Date().getFullYear()} NIRD. Tous droits réservés.</p>
                 </div>
                 <div className={styles.center}>
-                    <Route path="/mentions-legales" element={<MentionsLegales />} />
-                    <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+                    <Link to="/mentions-legales" className={styles.link}>Mentions légales</Link>
+                    {" | "}
+                    <Link to="/politique-confidentialite" className={styles.link}>Politique de confidentialité</Link>
                 </div>
             </div>
         </footer>
