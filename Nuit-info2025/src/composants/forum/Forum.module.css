@@ -1,0 +1,179 @@
+/* Conteneur principal */
+.container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* Filtre catégories */
+.select {
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: border 0.2s;
+}
+
+.select:hover, .select:focus {
+    border-color: #0077ff;
+    outline: none;
+}
+
+/* Liste des threads */
+.threadList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Carte d'une bulle */
+.threadCard {
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 220px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.threadCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.threadCard h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #0077ff;
+}
+
+.threadCard p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.threadCard button {
+    padding: 6px 12px;
+    border: none;
+    background-color: #0077ff;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.threadCard button:hover {
+    background-color: #005bb5;
+}
+
+/* Bouton + rond */
+.plusButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    border-radius: 50%; /* parfait rond */
+    background: #0077ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.plusButton:hover {
+    background: #005bb5;
+    transform: scale(1.1);
+}
+
+/* Overlay de la modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Contenu de la modal */
+.modal {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.modal h2 {
+    margin-top: 0;
+    color: #0077ff;
+}
+
+/* Inputs, textarea et select */
+.modal input, .modal textarea, .modal select {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border 0.2s;
+}
+
+.modal input:focus,
+.modal textarea:focus,
+.modal select:focus {
+    border-color: #0077ff;
+    outline: none;
+}
+
+/* Boutons de la modal */
+.modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modalButtons button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.modalButtons button:first-child {
+    background-color: #0077ff;
+    color: #fff;
+}
+
+.modalButtons button:first-child:hover {
+    background-color: #005bb5;
+}
+
+.modalButtons button:last-child {
+    background-color: #ddd;
+}
+
+.modalButtons button:last-child:hover {
+    background-color: #bbb;
+}
