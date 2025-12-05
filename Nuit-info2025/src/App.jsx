@@ -13,9 +13,8 @@ import { ParticulierInscription } from "./composants/inscription_connexion/Parti
 import { OrganisationInscription } from "./composants/inscription_connexion/OrganisationInscription";
 import { EntrepriseInscription } from "./composants/inscription_connexion/EntrepriseInscription";
 import { Profil } from "./composants/profil/Profil";
-import { Forum } from "./composants/forum/Forum";
-import { Catégorie } from "./composants/forum/Catégorie";
-import { Bulle } from "./composants/forum/Bulle";
+import { ForumPage } from './composants/forum/ForumPage.jsx';
+import { BullePage } from './composants/forum/BullePage.jsx';
 import { MentionsLegales } from './composants/mentions_legales/MentionsLegales.jsx';
 import { PolitiqueConfidentialite } from './composants/politique_confidentialite/PolitiqueConfidentialite.jsx';
 import { Snake } from './composants/snake/snake.jsx';
@@ -38,9 +37,8 @@ function App() {
         <Route path="/inscription/organisation" element={<OrganisationInscription />} />
         <Route path="/inscription/entreprise" element={<EntrepriseInscription />} />
         <Route path="/profil" element={<Profil />} />
-        <Route path="/forum" element={<Forum />} />
-        <Route path="/forum/:categoryId" element={<Catégorie />} />
-        <Route path="/thread/:threadId" element={<Bulle />} />
+        <Route path="/forum" element={<ForumPage />} />
+        <Route path="/forum/:threadId" element={<BullePage />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
         <Route path="/snake" element={<Snake />} />

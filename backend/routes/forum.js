@@ -15,25 +15,52 @@ router.get("/categories", async (req, res) => {
 });
 
 // --- Threads ---
-router.get("/categories/:categoryId/threads", async (req, res) => {
+router.get("/threads", async (req, res) => {
     try {
-        const threads = await Thread.find({ category: req.params.categoryId }).populate("author", "username");
+        const threads = await Thread.find().populate("author", "username").populate("category", "name");
         res.json(threads);
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
+router.get("/categories/:categoryId/threads", async (req, res) => {
+    try {
+        const threads = await Thread.find({ category: req.params.categoryId })
+                                    .populate("author", "username")
+                                    .populate("category", "name");
+        res.json(threads);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Récupérer un thread spécifique
+router.get("/threads/:threadId", async (req, res) => {
+    try {
+        const thread = await Thread.findById(req.params.threadId)
+                                   .populate("author", "username")
+                                   .populate("category", "name");
+        if (!thread) return res.status(404).json({ msg: "Thread non trouvé" });
+        res.json(thread);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Créer un thread
 router.post("/categories/:categoryId/threads", auth, async (req, res) => {
     try {
-        const { title } = req.body;
+        const { title, description } = req.body;
         const thread = new Thread({
             title,
+            description,
             category: req.params.categoryId,
             author: req.user.id
         });
         await thread.save();
-        res.status(201).json(thread);
+        const populatedThread = await thread.populate("author", "username").populate("category", "name");
+        res.status(201).json(populatedThread);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -42,13 +69,15 @@ router.post("/categories/:categoryId/threads", auth, async (req, res) => {
 // --- Messages ---
 router.get("/threads/:threadId/messages", async (req, res) => {
     try {
-        const messages = await Message.find({ thread: req.params.threadId }).populate("author", "username");
+        const messages = await Message.find({ thread: req.params.threadId })
+                                      .populate("author", "username");
         res.json(messages);
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
+// Créer un message et l'envoyer en temps réel
 router.post("/threads/:threadId/messages", auth, async (req, res) => {
     try {
         const { content } = req.body;
@@ -58,7 +87,14 @@ router.post("/threads/:threadId/messages", auth, async (req, res) => {
             content
         });
         await message.save();
-        res.status(201).json(message);
+
+        const populatedMessage = await message.populate("author", "username");
+
+        // Envoyer le message à tous les utilisateurs dans la room du thread
+        const io = req.app.get("io");
+        io.to(req.params.threadId).emit("message_received", populatedMessage);
+
+        res.status(201).json(populatedMessage);
     } catch (err) {
         res.status(500).json(err);
     }

@@ -1,0 +1,126 @@
+/* Conteneur principal */
+.container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* Titre du thread */
+.threadTitle {
+    font-size: 26px;
+    color: #0077ff;
+    margin-bottom: 5px;
+}
+
+/* Description et infos */
+.threadInfo {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Bloc messages */
+.messagesContainer {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Bulles de message */
+.message {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 70%;
+    background-color: #e5e5ea;
+    word-wrap: break-word;
+    transition: background 0.2s;
+}
+
+/* Bulles de l'auteur connecté */
+.message.self {
+    background-color: #0077ff;
+    color: white;
+    align-self: flex-end;
+}
+
+/* Nom de l'auteur */
+.messageAuthor {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Formulaire d'envoi */
+.messageForm {
+    display: flex;
+    gap: 10px;
+}
+
+.messageForm input {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.messageForm input:focus {
+    border-color: #0077ff;
+}
+
+.messageForm button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #0077ff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.messageForm button:hover {
+    background-color: #005bb5;
+}
+
+/* Scrollbar custom */
+.messagesContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messagesContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+.messagesContainer::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 8px;
+}
+
+.messagesContainer::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+.backButton {
+    margin-bottom: 15px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ddd;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.backButton:hover {
+    background-color: #bbb;
+}
