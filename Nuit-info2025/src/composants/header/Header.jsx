@@ -28,7 +28,9 @@ export const Header = () => {
 
             <div className={styles.login_container}>
                 <button className={styles.form_btn}>
-                    Formulaire
+                    <Link to="/questionnaire">
+                        Formulaire
+                    </Link>
                 </button>
                 
                 {user ? (

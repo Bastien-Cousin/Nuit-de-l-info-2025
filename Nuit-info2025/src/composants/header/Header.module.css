@@ -77,8 +77,16 @@
     transition: 0.2s ease;
 }
 
+.form_btn > * {
+    text-decoration: none;
+    color: #0077ff;
+}
+
 .form_btn:hover {
     background: #0077ff;
+}
+
+.form_btn:hover > *{
     color: white;
 }
 

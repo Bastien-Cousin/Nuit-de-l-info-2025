@@ -1,0 +1,106 @@
+.container {
+	max-width: 900px;
+	margin: 30px auto;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+
+.logo {
+	height: 48px;
+}
+
+.title {
+	font-size: 22px;
+	margin: 6px 0 12px;
+}
+
+.form {
+	width: 100%;
+}
+
+.questionCard {
+	border: 1px solid #e6e9ef;
+	padding: 12px;
+	border-radius: 8px;
+	margin-bottom: 12px;
+	background: #ffffff;
+}
+
+.questionText {
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.options {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.optionLabel {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	padding: 6px 8px;
+	border-radius: 6px;
+	transition: background 0.12s ease;
+}
+
+.optionLabel:hover {
+	background: #f5f8ff;
+}
+
+.optionLabel input {
+	accent-color: #0077ff;
+}
+
+.optionText {
+	user-select: none;
+}
+
+.controls {
+	display: flex;
+	gap: 10px;
+	margin-top: 12px;
+}
+
+.submitBtn {
+	background: #0077ff;
+	color: white;
+	border: none;
+	padding: 10px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.submitBtn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.resetBtn {
+	background: transparent;
+	border: 1px solid #cfcfcf;
+	padding: 10px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.result {
+	margin-top: 16px;
+	width: 100%;
+	border-top: 1px solid #eee;
+	padding-top: 12px;
+}
+
+.resultItem {
+	margin-top: 8px;
+}
+
+.resultQuestion {
+	font-weight: 600;
+}
