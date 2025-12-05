@@ -33,7 +33,7 @@ export const MentionsLegales = () => {
           <h2>Propriété intellectuelle</h2>
           <p>
             Tous les contenus présents sur ce site (textes, images, vidéos, logos, designs) sont
-            la propriété du collectif NIRD ou de leurs auteurs respectifs. Toute reproduction, 
+            la propriété de French Baguettes Croissants ou de leurs auteurs respectifs. Toute reproduction, 
             même partielle, est interdite sans autorisation préalable.
           </p>
         </section>
