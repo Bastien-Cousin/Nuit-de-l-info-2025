@@ -1,5 +1,3 @@
-import { Header } from "../header/Header.jsx";
-import { Footer } from "../footer/Footer.jsx";
 import styles from "./decouvrez_univers_jeu2.module.css";
 import { useState } from "react";
 
@@ -67,9 +65,7 @@ export const DecouvrezUniversJeu2 = () => {
 
   return (
     <div>
-      <Header />
-
-      <main className={styles.container}>
+     <main className={styles.container}>
         <h1 className={styles.title}>Jeu QCM - Découvrez l'univers</h1>
         <p className={styles.subtitle}>Sélectionnez une réponse pour chaque question et validez-la</p>
 
@@ -138,8 +134,6 @@ export const DecouvrezUniversJeu2 = () => {
           </button>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };

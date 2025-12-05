@@ -30,7 +30,6 @@ export const DecouvrezUniversGeneral = () => {
         </div>
         <DecouvrezUniversJeu1 />
         <DecouvrezUniversJeu2 />
-        <DecouvrezUniversJeu3 />
       </div>
       <Footer />
     </div>
