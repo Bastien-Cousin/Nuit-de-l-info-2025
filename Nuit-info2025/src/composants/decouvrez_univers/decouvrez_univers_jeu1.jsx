@@ -1,42 +1,109 @@
-import { Header } from "../header/Header.jsx";
-import { Footer } from "../footer/Footer.jsx";
+import { useState } from "react";
 import styles from "./decouvrez_univers_jeu1.module.css";
-import nird_logo from "../../img/nird_logo.png";
-import { Link } from "react-router-dom";
 
 export const DecouvrezUniversJeu1 = () => {
-  return (
-    <div>
-      <Header />
-      <div className={styles.container}>
-        <div className={styles.sectionAccroche}>
-          <img
-            className={`${styles.nirdLogo} ${styles.flotte}`}
-            src={nird_logo}
-            alt="Logo NIRD"
-          />
+  const mots = ["Responsabilité", "Inclusion", "Reconditionnement", "Linux"];
+  const phrases = [
+    "accès équitable au numérique, réduction de la fracture numérique...",
+    "usage raisonné et réflexif de technologies souveraines et respectueuses des données personnelles…",
+    "Un système d'exploitation Open Source créé par Linus Torvalds en 1991.",
+    "le processus de remise en état d'ordinateurs non-neufs pour leur donner une seconde vie, tout en garantissant leur bon fonctionnement et leur conformité aux besoins des utilisateurs.",
+  ];
 
-          <div className={styles.parabienvenue}>
-            <h1 className={styles.titreAccroche}>
-              Pour un numérique libre et écocitoyen dans les établissements
-              scolaires !
-            </h1>
-            <p>
-              À l’heure où la fin du support de Windows 10 nous rappelle notre
-              dépendance technologique et nous oblige à faire des choix, un
-              collectif enseignant issu de la forge des communs numériques
-              éducatifs invite les établissements scolaires et les collectivités
-              qui les accompagnent à s’engager progressivement vers un Numérique
-              qui soit davantage Inclusif, Responsable et Durable, en rejoignant
-              la « démarche NIRD  ».
-            </p>
-            <button>
-              <Link to="/qui-sommes-nous">Nous découvrir...</Link>
-            </button>
-          </div>
-        </div>
-      </div>
-      <Footer />
+  const reponses = {
+    Responsabilité:
+      "usage raisonné et réflexif de technologies souveraines et respectueuses des données personnelles…",
+    Inclusion:
+      "accès équitable au numérique, réduction de la fracture numérique...",
+    Reconditionnement:
+      "le processus de remise en état d'ordinateurs non-neufs pour leur donner une seconde vie, tout en garantissant leur bon fonctionnement et leur conformité aux besoins des utilisateurs.",
+    Linux:
+      "Un système d'exploitation Open Source créé par Linus Torvalds en 1991.",
+  };
+
+  const [motSelectionne, setMotSelectionne] = useState(null);
+  const [etatPhrases, setEtatPhrases] = useState({});
+  const [motsTrouves, setMotsTrouves] = useState({});
+  const [phrasesTrouvees, setPhrasesTrouvees] = useState({});
+
+  const handlePhraseSelect = (phrase) => {
+    if (!motSelectionne) return;
+    if (motsTrouves[motSelectionne] || phrasesTrouvees[phrase]) return;
+
+    if (reponses[motSelectionne] === phrase) {
+      setEtatPhrases((prev) => ({ ...prev, [phrase]: "correct" }));
+      setMotsTrouves((prev) => ({ ...prev, [motSelectionne]: true }));
+      setPhrasesTrouvees((prev) => ({ ...prev, [phrase]: true }));
+      setMotSelectionne(null);
+    } else {
+      setEtatPhrases((prev) => ({ ...prev, [phrase]: "wrong" }));
+      setTimeout(() => {
+        setEtatPhrases((prev) => {
+          const copie = { ...prev };
+          delete copie[phrase];
+          return copie;
+        });
+      }, 800);
+    }
+  };
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.titreAccroche}>Relie le mot à sa bonne phrase !</h1>
+      <p className={styles.paraAccroche}>
+        Clique sur un mot dans la colonne de gauche, puis sélectionne sa phrase
+        correspondante.
+      </p>
+
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>Mots</th>
+            <th>Phrases</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mots.map((mot, index) => {
+            const phrase = phrases[index];
+            const etatPhrase = etatPhrases[phrase];
+            const motEstTrouve = !!motsTrouves[mot];
+            const phraseEstTrouvee = !!phrasesTrouvees[phrase];
+
+            return (
+              <tr key={mot}>
+                <td className={styles.cell}>
+                  <button
+                    className={`${styles.button} ${
+                      motEstTrouve ? styles.correct : ""
+                    } ${motSelectionne === mot ? styles.selected : ""}`}
+                    onClick={() => {
+                      if (motEstTrouve) return;
+                      setMotSelectionne(mot);
+                    }}
+                    disabled={motEstTrouve}
+                  >
+                    {mot}
+                  </button>
+                </td>
+                <td className={styles.cell}>
+                  <button
+                    className={`${styles.button} ${
+                      etatPhrase === "correct" ? styles.correct : ""
+                    } ${etatPhrase === "wrong" ? styles.wrong : ""}`}
+                    disabled={phraseEstTrouvee}
+                    onClick={() => {
+                      if (phraseEstTrouvee) return;
+                      handlePhraseSelect(phrase);
+                    }}
+                  >
+                    {phrase}
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };
