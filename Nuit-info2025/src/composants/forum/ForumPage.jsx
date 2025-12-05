@@ -11,14 +11,15 @@ export const ForumPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [newThreadOpen, setNewThreadOpen] = useState(false);
   const [newThread, setNewThread] = useState({ title: "", description: "", category: "" });
-
   const navigate = useNavigate();
+
+  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/forum`;
 
   // --- Charger les catégories ---
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/forum/categories");
+        const res = await axios.get(`${API_URL}/categories`);
         setCategories(res.data);
       } catch (err) {
         console.error("Erreur chargement catégories :", err);
@@ -31,8 +32,8 @@ export const ForumPage = () => {
   const fetchThreads = async (categoryId = selectedCategory) => {
     try {
       const url = categoryId
-        ? `http://localhost:5000/api/forum/categories/${categoryId}/threads`
-        : `http://localhost:5000/api/forum/threads`;
+        ? `${API_URL}/categories/${categoryId}/threads`
+        : `${API_URL}/threads`;
       const res = await axios.get(url);
       setThreads(res.data);
     } catch (err) {
@@ -59,12 +60,11 @@ export const ForumPage = () => {
       }
 
       const res = await axios.post(
-        `http://localhost:5000/api/forum/categories/${newThread.category}/threads`,
+        `${API_URL}/categories/${newThread.category}/threads`,
         { title: newThread.title, description: newThread.description },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Ajouter le thread créé à la liste
       setThreads(prev => [res.data, ...prev]);
       setNewThreadOpen(false);
       setNewThread({ title: "", description: "", category: "" });
@@ -90,7 +90,6 @@ export const ForumPage = () => {
       <div className={styles.container}>
         <h1>Forum</h1>
 
-        {/* Filtre catégories */}
         <select
           value={selectedCategory}
           onChange={e => setSelectedCategory(e.target.value)}
@@ -102,10 +101,9 @@ export const ForumPage = () => {
           ))}
         </select>
 
-        {/* Liste des threads */}
         <div className={styles.threadList}>
           {threads.map(thread => {
-            const color = categoryColors[thread.category?._id] || "#bdc3c7"; // couleur par défaut
+            const color = categoryColors[thread.category?._id] || "#bdc3c7";
             return (
               <div key={thread._id} className={styles.threadCard} style={{ borderColor: color }}>
                 <h3 style={{ color }}>{thread.title}</h3>
@@ -117,11 +115,10 @@ export const ForumPage = () => {
                   Ouvrir
                 </button>
               </div>
-            )
+            );
           })}
         </div>
 
-        {/* Bouton + */}
         <button
           className={styles.plusButton}
           onClick={() => setNewThreadOpen(true)}
@@ -129,7 +126,6 @@ export const ForumPage = () => {
           +
         </button>
 
-        {/* Modal création */}
         {newThreadOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>
