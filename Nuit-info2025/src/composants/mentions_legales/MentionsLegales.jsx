@@ -50,7 +50,7 @@ export const MentionsLegales = () => {
         <section className={styles.section}>
           <h2>Responsabilité</h2>
           <p>
-            Le collectif NIRD s’efforce de fournir des informations fiables et à jour, mais ne peut 
+            French Baguettes Croissants s’efforce de fournir des informations fiables et à jour, mais ne peut 
             être tenu responsable des erreurs ou omissions sur le site ou de l’usage fait des 
             informations publiées.
           </p>
