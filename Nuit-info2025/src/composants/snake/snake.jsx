@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./snake.module.css";
 import musiqueSnake from "./musique/tetris_off.mp3";
+import musiqueManger from "./musique/manger_pomme.mp3";
 import { MdMusicNote } from "react-icons/md";
 import { MdMusicOff } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { GiDeathSkull } from "react-icons/gi";
+import { GiAngelWings } from "react-icons/gi";
 
 export const Snake = () => {
+  const sonMangerRef = useRef(new Audio(musiqueManger));
+
   const audioRef = useRef(null);
   const [musiqueEnLecture, setMusiqueEnLecture] = useState(false);
+  const [hardcore, setHardcore] = useState(false);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const toggleMusique = () => {
     if (!audioRef.current) return;
@@ -22,8 +30,8 @@ export const Snake = () => {
   };
 
   const tailleGrille = 20;
-  const tailleGrilleHauteur = 28;  // hauteur plus grande que largeur
-  const tailleGrilleLargeur = 20;  // largeur plus petite
+  const tailleGrilleHauteur = 28;
+  const tailleGrilleLargeur = 20;
 
   const couleursTetris = [
     "#FF0D72",
@@ -37,7 +45,7 @@ export const Snake = () => {
 
   const [serpent, setSerpent] = useState([
     {
-      position: [15, 7],  // position initiale adaptée
+      position: [15, 7],
       couleur:
         couleursTetris[Math.floor(Math.random() * couleursTetris.length)],
     },
@@ -51,7 +59,7 @@ export const Snake = () => {
   const [perdu, setPerdu] = useState(false);
   const [enCours, setEnCours] = useState(false);
   const [score, setScore] = useState(0);
-  const vitesse = 150;
+  const vitesse = 175;
   const [theme, setTheme] = useState("tetris");
 
   const reinitialiserJeu = () => {
@@ -150,8 +158,17 @@ export const Snake = () => {
   };
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     if (!enCours || perdu) return;
 
+    const vitesseActuelle = hardcore ? 90 : vitesse;
     const id = setInterval(() => {
       setSerpent((prevSerpent) => {
         const dir = directionRef.current;
@@ -193,32 +210,63 @@ export const Snake = () => {
         let nouveau = [nouvelleTete, ...prevSerpent];
 
         if (mangePomme) {
+          try {
+            sonMangerRef.current.currentTime = 0;
+            sonMangerRef.current.play();
+          } catch (e) {
+          }
+
           genererPomme(nouveau);
-          setScore(score + 1);
+          setScore((s) => s + 1);
         } else {
           nouveau.pop();
         }
 
         return nouveau;
       });
-    }, vitesse);
+    }, vitesseActuelle);
 
     return () => clearInterval(id);
-  }, [enCours, perdu, pomme, score]);
+  }, [enCours, perdu, pomme, hardcore]);
 
   return (
     <div className={`${styles.conteneurJeu} ${styles[theme]}`}>
-      <button className={styles.boutonMusique} onClick={toggleMusique}>
-        {musiqueEnLecture ? (
-          <MdMusicOff size={40} />
-        ) : (
-          <MdMusicNote size={40} />
-        )}
-      </button>
-      <Link to='/'>
-        <button className={styles.boutonRetour}>
-          Revenir au site...
+      {loading && (
+        <div className={styles.loadingScreen}>
+          <div className={styles.loadingText}>LOADING...</div>
+        </div>
+      )}
+
+      <div className={styles.topControls}>
+        <button
+          className={styles.boutonMusique}
+          onClick={() => {
+            toggleMusique();
+            setMessage(musiqueEnLecture ? "Musique OFF" : "Musique ON");
+            setTimeout(() => setMessage(""), 2000);
+          }}
+        >
+          {musiqueEnLecture ? (
+            <MdMusicOff size={40} />
+          ) : (
+            <MdMusicNote size={40} />
+          )}
         </button>
+
+        <button
+          className={styles.boutonHardcore}
+          onClick={() => {
+            setHardcore(!hardcore);
+            setMessage(!hardcore ? "Mode Hardcore ON !" : "Mode Normal ON !");
+            setTimeout(() => setMessage(""), 2000);
+          }}
+          aria-label="Toggle hardcore"
+        >
+          {hardcore ? <GiDeathSkull size={40} /> : <GiAngelWings size={40} />}
+        </button>
+      </div>
+      <Link to="/">
+        <button className={styles.boutonRetour}>Revenir au site...</button>
       </Link>
       <div className={styles.titreGrille}>SNAKE !</div>
       {perdu && (
@@ -236,6 +284,7 @@ export const Snake = () => {
           <span className={styles.scoretab}>Score :</span>
           <span className={styles.scoreValeur}>{score}</span>
         </div>
+        {message && <div className={styles.message}>{message}</div>}
         <div className={styles.grille}>
           {Array.from({ length: tailleGrilleHauteur }).map((_, i) => (
             <div key={i} className={styles.ligne}>
@@ -265,4 +314,4 @@ export const Snake = () => {
       </div>
     </div>
   );
-}
+};

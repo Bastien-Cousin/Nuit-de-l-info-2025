@@ -25,9 +25,7 @@ export const MentionsLegales = () => {
           <h2>Hébergement</h2>
           <p>
             Le site est hébergé par :<br />
-            Nom de l’hébergeur : OVH<br />
-            Adresse : 2 rue Kellermann, 59100 Roubaix, France<br />
-            Téléphone : +33 9 72 10 10 07
+            Nom de l’hébergeur : Netlify<br />
           </p>
         </section>
 
@@ -35,7 +33,7 @@ export const MentionsLegales = () => {
           <h2>Propriété intellectuelle</h2>
           <p>
             Tous les contenus présents sur ce site (textes, images, vidéos, logos, designs) sont
-            la propriété du collectif NIRD ou de leurs auteurs respectifs. Toute reproduction, 
+            la propriété de French Baguettes Croissants ou de leurs auteurs respectifs. Toute reproduction, 
             même partielle, est interdite sans autorisation préalable.
           </p>
         </section>
@@ -52,7 +50,7 @@ export const MentionsLegales = () => {
         <section className={styles.section}>
           <h2>Responsabilité</h2>
           <p>
-            Le collectif NIRD s’efforce de fournir des informations fiables et à jour, mais ne peut 
+            French Baguettes Croissants s’efforce de fournir des informations fiables et à jour, mais ne peut 
             être tenu responsable des erreurs ou omissions sur le site ou de l’usage fait des 
             informations publiées.
           </p>
