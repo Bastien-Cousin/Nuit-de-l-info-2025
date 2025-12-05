@@ -7,10 +7,14 @@ mongoose.connect("mongodb+srv://dequidtclement1_db_user:Clement*MONGODB1998@nuit
     .catch(err => console.error("Erreur MongoDB :", err));
 
 const categories = [
-    { name: "Exemple1", description: "Catégorie test 1" },
-    { name: "Exemple2", description: "Catégorie test 2" },
-    { name: "Exemple3", description: "Catégorie test 3" },
+    { name: "Don de matériel", description: "Partage et annonces de dons de matériel informatique pour les établissements et familles." },
+    { name: "Reconditionnement", description: "Guides, tutoriels et retours d'expérience pour reconditionner des ordinateurs." },
+    { name: "Distribution Linux", description: "Discussions autour des distributions Linux éducatives, installation et configuration." },
+    { name: "Pédagogie et usages", description: "Projets pédagogiques, activités et ressources éducatives libres." },
+    { name: "Soutien et questions", description: "Support technique et conseils pour enseignants et participants." },
+    { name: "Actualités et initiatives locales", description: "Informations sur les projets, événements et nouveautés NIRD." }
 ];
+
 
 const seedCategories = async () => {
     try {

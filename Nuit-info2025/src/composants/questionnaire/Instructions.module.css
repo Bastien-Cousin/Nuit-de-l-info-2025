@@ -1,0 +1,94 @@
+.instructionsPageContainer {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 25px;
+  font-family: Arial, sans-serif;
+}
+
+.instructionsError {
+  text-align: center;
+  padding: 40px;
+}
+
+.instructionsError h2 {
+  color: #d9534f;
+  font-size: 26px;
+}
+
+.instructionsError p {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #555;
+}
+
+.instructionsError button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.instructionsError button:hover {
+  background-color: #005fcc;
+}
+
+/* ----- Titre général ----- */
+.instructionsTitle {
+  text-align: center;
+  color: #0077ff;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+/* ----- Carte d’instruction ----- */
+.instructionsCard {
+  background: white;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-left: 6px solid #0077ff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease;
+}
+
+.instructionsCard:hover {
+  transform: scale(1.01);
+}
+
+.instructionsText {
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.instructionsImage {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  display: block;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .instructionsPageContainer {
+    padding: 15px;
+  }
+
+  .instructionsCard {
+    padding: 15px;
+  }
+
+  .instructionsText {
+    font-size: 15px;
+  }
+
+  .instructionsImage {
+    max-width: 100%;
+  }
+}

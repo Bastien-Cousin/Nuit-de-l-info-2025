@@ -16,6 +16,7 @@ import { MentionsLegales } from './composants/mentions_legales/MentionsLegales.j
 import { PolitiqueConfidentialite } from './composants/politique_confidentialite/PolitiqueConfidentialite.jsx';
 import { Snake } from './composants/snake/snake.jsx';
 import { ScrollToTop } from './tools/ScrollToTop.js';
+import { InstructionsPage } from "./composants/questionnaire/InstructionsPage.jsx";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
         <Route path="/snake" element={<Snake />} />
+        <Route path="/instructions" element={<InstructionsPage />} />
       </Routes>
     </Router>
   )
