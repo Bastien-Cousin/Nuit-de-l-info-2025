@@ -13,5 +13,5 @@ Features développées :
 - pages des mentions légales et de la potilique de confidentialité
 ## Informations sur les défis secondaire : 
 Le défi "Hidden Snake" est caché sur la page "Qui sommes nous?", en cliquant sur le serpent en bas de la page.
-La page modifiée en version rétro (défi "On veut du gros pixel !") est celle du Snake.
+La page modifiée en version rétro (défi "On veut du gros pixel !") est celle du Snake sur le thème de Tetris.
 Le formulaire du défi "Devenez le CTO de votre santé posturale" est accessible via l'icône de formulaire dans le header.
