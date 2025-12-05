@@ -51,8 +51,9 @@ export const DecouvrezUniversJeu1 = () => {
     <div className={styles.container}>
       <h1 className={styles.titreAccroche}>Relie le mot à sa bonne phrase !</h1>
       <p className={styles.paraAccroche}>
-        Clique sur un mot dans la colonne de gauche, puis sélectionne sa phrase
-        correspondante.
+        Clique sur un mot dans la colonne de gauche, puis choisis la phrase qui
+        lui correspond dans la colonne de droite. Tu verras directement si ton association
+        est bonne ou pas. Essaie de relier tous les mots correctement !!
       </p>
 
       <table className={styles.table}>
