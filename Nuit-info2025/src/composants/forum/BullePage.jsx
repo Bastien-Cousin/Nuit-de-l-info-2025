@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
@@ -6,8 +6,6 @@ import { MessageFormulaire } from "./MessageFormulaire";
 import styles from "./BullePage.module.css";
 import { Header } from "../header/Header";
 import { Footer } from "../footer/Footer";
-
-const socket = io("http://localhost:5000");
 
 export const BullePage = () => {
     const { threadId } = useParams();
@@ -26,7 +24,7 @@ export const BullePage = () => {
                 setThread(threadRes.data);
                 setMessages(messagesRes.data);
             } catch (err) {
-                console.error("Erreur lors du chargement du thread :", err);
+                console.error("Erreur chargement thread :", err);
             }
         };
         fetchData();
@@ -35,6 +33,8 @@ export const BullePage = () => {
     // --- Socket.io pour messages en temps réel ---
     useEffect(() => {
         if (!threadId) return;
+
+        const socket = io("http://localhost:5000");
         socket.emit("join_thread", threadId);
 
         const handleMessage = (msg) => setMessages(prev => [...prev, msg]);
@@ -42,7 +42,7 @@ export const BullePage = () => {
 
         return () => {
             socket.emit("leave_thread", threadId);
-            socket.off("message_received", handleMessage);
+            socket.disconnect();
         };
     }, [threadId]);
 
@@ -51,10 +51,7 @@ export const BullePage = () => {
     return (
       <>
         <Header />
-
         <div className={styles.container}>
-
-            {/* Bouton retour */}
             <button 
                 className={styles.backButton} 
                 onClick={() => navigate("/forum")}
@@ -77,7 +74,7 @@ export const BullePage = () => {
                     messages.map(msg => (
                         <div
                             key={msg._id}
-                            className={`${styles.message} ${msg.author?._id === localStorage.getItem("userId") ? styles.self : ""}`}
+                            className={`${styles.message} ${msg.author?._id.toString() === localStorage.getItem("userId") ? styles.self : ""}`}
                         >
                             <div className={styles.messageAuthor}>{msg.author?.username || "Anonyme"}</div>
                             {msg.content}
@@ -87,9 +84,8 @@ export const BullePage = () => {
             </div>
 
             {/* Formulaire d'envoi */}
-            <MessageFormulaire threadId={threadId} onPosted={() => {}} />
+            <MessageFormulaire threadId={threadId} onPosted={(newMsg) => setMessages(prev => [...prev, newMsg])} />
         </div>
-
         <Footer />
       </>
     );

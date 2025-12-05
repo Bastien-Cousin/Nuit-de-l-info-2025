@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Category = require("../models/Catégorie");
+const Category = require("../models/Category");
 const Thread = require("../models/Thread");
 const Message = require("../models/Message");
 const auth = require("../middleware/auth");
@@ -26,13 +26,27 @@ router.get("/threads", async (req, res) => {
     }
 });
 
-router.get("/categories/:categoryId/threads", async (req, res) => {
+router.post("/categories/:categoryId/threads", auth, async (req, res) => {
     try {
-        const threads = await Thread.find({ category: req.params.categoryId })
-            .populate("author", "username")
-            .populate("category", "name");
-        res.json(threads);
+        const { title, description } = req.body;
+        if (!title || !description) return res.status(400).json({ message: "Tous les champs sont requis" });
+
+        const thread = new Thread({
+            title,
+            description,
+            category: req.params.categoryId,
+            author: req.user.id
+        });
+
+        const savedThread = await thread.save();
+        await savedThread.populate([
+            { path: "author", select: "username" },
+            { path: "category", select: "name" }
+        ]);
+
+        res.status(201).json(savedThread);
     } catch (err) {
+        console.error("Erreur création thread :", err);
         res.status(500).json({ error: err.message });
     }
 });
@@ -105,8 +119,9 @@ router.post("/threads/:threadId/messages", auth, async (req, res) => {
         const savedMessage = await message.save();
         const populatedMessage = await savedMessage.populate("author", "username");
 
+        // Socket.io : vérifier que io est configuré
         const io = req.app.get("io");
-        io.to(req.params.threadId).emit("message_received", populatedMessage);
+        if (io) io.to(req.params.threadId).emit("message_received", populatedMessage);
 
         res.status(201).json(populatedMessage);
     } catch (err) {

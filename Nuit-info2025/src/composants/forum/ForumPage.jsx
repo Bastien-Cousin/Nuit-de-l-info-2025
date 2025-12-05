@@ -47,38 +47,41 @@ export const ForumPage = () => {
   // --- Créer un nouveau thread ---
   const handleCreateThread = async () => {
     if (!newThread.title || !newThread.description || !newThread.category) {
-        alert("Merci de remplir tous les champs !");
-        return;
+      alert("Merci de remplir tous les champs !");
+      return;
     }
 
     try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            alert("Vous devez être connecté pour créer une bulle.");
-            return;
-        }
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Vous devez être connecté pour créer une bulle.");
+        return;
+      }
 
-        const res = await axios.post(
-            `http://localhost:5000/api/forum/categories/${newThread.category}/threads`,
-            { title: newThread.title, description: newThread.description },
-            { headers: { Authorization: `Bearer ${token}` } }
-        );
+      const res = await axios.post(
+        `http://localhost:5000/api/forum/categories/${newThread.category}/threads`,
+        { title: newThread.title, description: newThread.description },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-        setThreads(prev => [res.data, ...prev]);
-        setNewThreadOpen(false);
-        setNewThread({ title: "", description: "", category: "" });
-
+      // Ajouter le thread créé à la liste
+      setThreads(prev => [res.data, ...prev]);
+      setNewThreadOpen(false);
+      setNewThread({ title: "", description: "", category: "" });
     } catch (err) {
-        console.error("Erreur lors de la création du thread :", err.response?.data || err);
-        alert("Erreur lors de la création de la bulle : " + (err.response?.data?.message || err.message));
+      console.error("Erreur création thread :", err.response?.data || err);
+      alert("Erreur : " + (err.response?.data?.message || err.message));
     }
   };
 
-  // --- Couleurs par catégorie
+  // --- Couleurs par catégorie ---
   const categoryColors = {
-    "69321950017221d5b1b5162b": "#1758ae",
-    "69321950017221d5b1b5162c": "#c83fed",
-    "69321950017221d5b1b5162d": "#f6d13a"
+    "69326a6aebfc534537f6b613": "#1758ae",
+    "69326a6aebfc534537f6b614": "#c83fed",
+    "69326a6aebfc534537f6b615": "#f6d13a",
+    "69326a6aebfc534537f6b616": "#ff30ff",
+    "69326a6aebfc534537f6b617": "#cbd1ea",
+    "69326a6aebfc534537f6b618": "#faa99c"
   };
 
   return (
@@ -107,7 +110,7 @@ export const ForumPage = () => {
               <div key={thread._id} className={styles.threadCard} style={{ borderColor: color }}>
                 <h3 style={{ color }}>{thread.title}</h3>
                 <p>{thread.description}</p>
-                <button 
+                <button
                   onClick={() => navigate(`/forum/${thread._id}`)}
                   style={{ backgroundColor: color, color: "#fff" }}
                 >
