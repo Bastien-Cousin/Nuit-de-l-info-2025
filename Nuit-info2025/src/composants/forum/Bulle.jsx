@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { io } from "socket.io-client";
 import { MessageFormulaire } from "./MessageFormulaire";
+import { io } from "socket.io-client";
 
 const socket = io("http://localhost:5000");
 
@@ -10,7 +10,6 @@ export const Bulle = () => {
     const { threadId } = useParams();
     const [messages, setMessages] = useState([]);
 
-    // Récupération initiale
     const fetchMessages = async () => {
         const res = await axios.get(
             `http://localhost:5000/api/forum/threads/${threadId}/messages`
@@ -18,37 +17,29 @@ export const Bulle = () => {
         setMessages(res.data);
     };
 
-    // Connexion Socket.IO
     useEffect(() => {
         fetchMessages();
 
-        // rejoindre la room
-        socket.emit("joinThread", threadId);
+        socket.emit("join_thread", threadId);
 
-        // écoute des nouveaux messages en temps réel
-        socket.on("newMessage", (message) => {
-            setMessages(prev => [...prev, message]);
+        // Écouter les messages en temps réel
+        socket.on("message_received", (msg) => {
+            if (msg.thread === threadId) {
+                setMessages((prev) => [...prev, msg]);
+            }
         });
 
-        return () => {
-            socket.off("newMessage");
-        };
+        return () => socket.off("message_received");
     }, [threadId]);
 
     return (
         <div style={{ padding: "20px" }}>
             <h3>Messages</h3>
-
-            {/* Formulaire d'envoi */}
-            <MessageFormulaire 
-                threadId={threadId}
-                onPosted={(msg) => setMessages(prev => [...prev, msg])}
-            />
-
+            <MessageFormulaire threadId={threadId} />
             <ul>
-                {messages.map(msg => (
-                    <li key={msg._id || Math.random()}>
-                        <strong>{msg.author?.username || "Anonyme"}</strong> : {msg.content}
+                {messages.map((msg) => (
+                    <li key={msg._id}>
+                        <strong>{msg.author.username}</strong>: {msg.content}
                     </li>
                 ))}
             </ul>
