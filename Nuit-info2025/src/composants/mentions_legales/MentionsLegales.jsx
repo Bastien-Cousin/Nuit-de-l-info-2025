@@ -1,8 +1,15 @@
+import { useEffect } from 'react';
 import { Header } from '../header/Header.jsx';
 import { Footer } from '../footer/Footer.jsx';
 import styles from './MentionsLegales.module.css';
 
 export const MentionsLegales = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
   return (
     <>
       <Header />
