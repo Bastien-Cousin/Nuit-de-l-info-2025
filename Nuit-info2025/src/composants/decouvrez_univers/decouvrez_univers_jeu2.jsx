@@ -4,8 +4,8 @@ import { useState } from "react";
 const qcmQuestions = [
   {
     id: 1,
-    question: "Quelle est la capitale de la France ?",
-    options: ["Londres", "Paris", "Berlin", "Madrid"],
+    question: "Quel est le système d'exploitation le plus libre ?",
+    options: ["MacOS", "Windows", "Linux", "SteamOS"],
     correct: 1
   },
   {
