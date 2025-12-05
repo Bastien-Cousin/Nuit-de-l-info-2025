@@ -7,7 +7,8 @@ import styles from "./BullePage.module.css";
 import { Header } from "../header/Header";
 import { Footer } from "../footer/Footer";
 
-const socket = io("http://localhost:5000");
+const SOCKET_URL = import.meta.env.VITE_BACKEND_URL;
+const socket = io(SOCKET_URL);
 
 export const BullePage = () => {
     const { threadId } = useParams();
@@ -15,17 +16,18 @@ export const BullePage = () => {
     const [messages, setMessages] = useState([]);
     const navigate = useNavigate();
 
+    const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/forum`;
+
     // --- Charger thread et messages ---
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const [threadRes, messagesRes] = await Promise.all([
-                    axios.get(`http://localhost:5000/api/forum/threads/${threadId}`),
-                    axios.get(`http://localhost:5000/api/forum/threads/${threadId}/messages`)
+                    axios.get(`${API_URL}/threads/${threadId}`),
+                    axios.get(`${API_URL}/threads/${threadId}/messages`)
                 ]);
 
                 setThread(threadRes.data);
-                // filtrer les messages invalides
                 setMessages(messagesRes.data.filter(msg => msg));
             } catch (err) {
                 console.error("Erreur lors du chargement du thread :", err);
@@ -41,7 +43,7 @@ export const BullePage = () => {
         socket.emit("join_thread", threadId);
 
         const handleMessage = (msg) => {
-            if (!msg) return; // ignorer les messages invalides
+            if (!msg) return;
             setMessages(prev => [...prev, msg]);
         };
 
@@ -58,10 +60,7 @@ export const BullePage = () => {
     return (
         <>
             <Header />
-
             <div className={styles.container}>
-
-                {/* Bouton retour */}
                 <button 
                     className={styles.backButton} 
                     onClick={() => navigate("/forum")}
@@ -76,14 +75,12 @@ export const BullePage = () => {
                     <strong>Auteur :</strong> {thread.author?.username || "Anonyme"}
                 </p>
 
-                {/* Messages */}
                 <div className={styles.messagesContainer}>
                     {messages.length === 0 ? (
                         <p>Aucun message pour l'instant.</p>
                     ) : (
                         messages.map(msg => {
                             if (!msg) return null;
-
                             return (
                                 <div
                                     key={msg._id}
@@ -97,12 +94,10 @@ export const BullePage = () => {
                     )}
                 </div>
 
-                {/* Formulaire d'envoi */}
                 <MessageFormulaire threadId={threadId} onPosted={(newMsg) => {
                     if (newMsg) setMessages(prev => [...prev, newMsg]);
                 }} />
             </div>
-
             <Footer />
         </>
     );
