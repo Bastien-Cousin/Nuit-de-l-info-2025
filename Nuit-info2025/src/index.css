@@ -1,4 +1,9 @@
+@font-face {
+    font-family: 'PolicePrincipaleSite';
+    src: url('../src/assets/fonts/CreatoDisplay-Medium.otf') format('truetype');
+}
 * {
+    font-family: 'PolicePrincipaleSite', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
